@@ -9,20 +9,16 @@ import models._
 object MockInitializer {
   
   def initializeProjects = {
-    println("start inserting DCM, Foglight, Toad ...")
-    Await.result(Project.insert(Project(None, Some("DCM"), Some("Dell Cloud Manager"))), 5.seconds)
-    Await.result(Project.insert(Project(None, Some("Foglight"), Some("Performance Monotoring"))), 5.seconds)
-    Await.result(Project.insert(Project(None, Some("Toad"), Some("Database Management System"))), 5.seconds)
-    println("finished inserting DCM, Foglight, Toad ...")
+    Await.result(Project.insert(Project(None, Some("pocproj1"), Some("poc project 1"))), 5.seconds)
+    Await.result(Project.insert(Project(None, Some("pocproj2"), Some("poc project 2"))), 5.seconds)
+    Await.result(Project.insert(Project(None, Some("pocproj3"), Some("poc project 3"))), 5.seconds)
   }
   
   def initializeRegions = {
-    println("start inserting asia-east1 ...")
     var projectId: Option[BSONObjectID] = None
-    val projectBson = Await.result(Project.select("DCM"), 5.seconds)
+    val projectBson = Await.result(Project.select("pocproj1"), 5.seconds)
     if (projectBson.isDefined)
       projectId = Project.reader.read(projectBson.get).id
-    println("prepare region done! projectId = " + projectId.get.stringify)
     Await.result(Region.insert(Region(None, 
           Some(new Date), 
           Some("asia-east1"), 
@@ -31,13 +27,11 @@ object MockInitializer {
           Some(List(Quota(Some("quota-metric1"), Some(88.82), Some(0.88)), Quota(Some("quota-metric2"), Some(0.98), Some(0.98)))),
           Some(Deprecated(Some("DELETED"), None, None, None, Some(new Date))),
           projectId)), 5.seconds)
-    println("finished inserting asia-east1 ...")
   }
   
   def initializeZones = {
-    println("start inserting asia-east1-a ...")
     var project: Option[Project] = None
-    val projectBson = Await.result(Project.select("DCM"), 5.seconds)
+    val projectBson = Await.result(Project.select("pocproj1"), 5.seconds)
     if (projectBson.isDefined)
       project = Some(Project.reader.read(projectBson.get))
     var region: Option[Region] = None
@@ -63,7 +57,6 @@ object MockInitializer {
               None,
               None,
               Some(new Date))))), 5.seconds)
-    println("finished inserting asia-east1-a ...")
   }
   
 }
