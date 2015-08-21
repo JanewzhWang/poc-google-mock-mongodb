@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Test
+GET			/test/save					controllers.TestController.save(projectId: Long, projectName: String)
+GET			/test/find					controllers.TestController.find(projectId: Long)
+GET			/test/query					controllers.TestController.queryCriteria(aboveId: Long)
+
+# Initializer
+GET		/compute/v1/initialize							initialize.InitializeController.initialize
+
+# Projects
+GET		/compute/v1/projects/:project					controllers.ProjectController.get(project: String)
+GET		/compute/v1/projects							controllers.ProjectController.list
+
+# Regions
+GET		/compute/v1/projects/:project/regions/:region	controllers.RegionController.get(project: String, region: String)
+GET		/compute/v1/projects/:project/regions			controllers.RegionController.list(project: String)
+
+# Zones
+GET		/compute/v1/projects/:project/zones/:zone		controllers.ZoneController.get(project: String, zone: String)
+GET		/compute/v1/projects/:project/zones				controllers.ZoneController.list(project: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
