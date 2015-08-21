@@ -30,8 +30,11 @@ Generate IntelliJ Project:</br>
 #### 4. Database configuration
 conf/application.conf
 
+#### 6. Generate test data
+http://host:port/compute/v1/initialize
+
 #### 5. Sample requests
-http://host:port/compute/v1/projects/test-vim-120/regions</br>
-http://host:port/compute/v1/projects/test-vim-120/regions/asia-east1</br>
-http://host:port/compute/v1/projects/test-vim-120/zones</br>
-http://host:port/compute/v1/projects/test-vim-120/zones/asia-east1-a
+http://host:port/compute/v1/projects/pocproj1/regions</br>
+http://host:port/compute/v1/projects/pocproj1/regions/asia-east1</br>
+http://host:port/compute/v1/projects/pocproj1/zones</br>
+http://host:port/compute/v1/projects/pocproj1/zones/asia-east1-a
